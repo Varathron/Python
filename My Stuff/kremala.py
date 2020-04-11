@@ -118,6 +118,9 @@ while arithmosLathon < settingLathi and kerdises != True:
                     pavles[i] = grammataLeksis[i]
             display()
         #an einai lathos to gramma pou mantepse
+        elif mantepsiaCaps in grammataPouPaixtikan:
+            display()
+            print("Edwses hdh auto to gramma: " + mantepsiaCaps)
         else:
             arithmosLathon += 1
             grammataPouPaixtikan.append(mantepsiaCaps)
