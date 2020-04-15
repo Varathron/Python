@@ -2,9 +2,12 @@
 import Tkinter as tk
 import ttk 
 
-mph_to_kmh = 1.60935
-kmh_to_mph = 0.6213688756
+distances_units = {
+	"kilometer_2_mile" : 0.6213688756,
+	"mile_2_kilometer" : 1.60935
+}
 
+distances_labels = ["Kilometer", "Mile"]
 
 
 def input_getter():
@@ -13,68 +16,71 @@ def input_getter():
 		return 0
 	else:
 		entry = float(entry)
-	return entry
+		return entry
 
 
-def converter(input_value, conversion):
-    input_value = input_getter()
-    result = input_value * conversion
-    output.configure(text=str(result))
+def converter(input_value, from_unit, to_unit):
+	factor = 0
+
+	if from_unit == 'Kilometer':
+		if to_unit == 'Mile':
+			factor = distances_units["kilometer_2_mile"]
+		else:
+			factor = 1
+	else:
+		if to_unit == 'Kilometer':
+			factor = distances_units["mile_2_kilometer"]
+		else:
+			factor = 1
+
+	result = input_value * factor
+	output.configure(text=str(result))
 
 
 window = tk.Tk()
+
 window.geometry("600x400")
 window.resizable(False, False)
 window.title("Unit Conversion")
 
 
-
 tabs = ttk.Notebook(window)
+tabs.grid(sticky='w')
 
-speed_tab = tk.Frame(tabs)
-tabs.add(speed_tab, text='Speed')
-tabs.grid(row=0, column=0)
 
-weights_tab = tk.Frame(tabs)
-tabs.add(weights_tab, text='Weights')
-tabs.grid(row=0, column=0)
+distance_tab_frame = tk.Frame(tabs)
+tabs.add(distance_tab_frame, text='Distance')
+
+speed_tab_frame = tk.Frame(tabs)
+tabs.add(speed_tab_frame, text='Speed')
+
+
+from_unit = tk.StringVar()
+to_unit = tk.StringVar()
+
+unit_selection_from = tk.OptionMenu(distance_tab_frame, from_unit, *distances_labels)
+unit_selection_from.grid(row=0, column=0)
+
+to_label = tk.Label(distance_tab_frame, text=" to ")
+to_label.grid(row=0, column=1)
+
+unit_selection_to = tk.OptionMenu(distance_tab_frame, to_unit, *distances_labels)
+unit_selection_to.grid(row=0, column=2)
+
 
 middle_frame = tk.Frame(window, bd=10)
 middle_frame.grid(row=1)
+
+convert_button = tk.Button(middle_frame, text="Convert", pady=10, padx=20, command=lambda: converter(input_getter(), from_unit.get(), to_unit.get()))
+convert_button.grid(row=1)
+
 
 lower_frame = tk.Frame(window, bd=10)
 lower_frame.grid(row=2)
 
 
-
-mph2kmh = tk.Button(speed_tab, text="MPH to Km/H", command=lambda: converter(input_getter(), mph_to_kmh))
-mph2kmh.grid(row=0, column=0, sticky='E')
-
-kmh2mph = tk.Button(speed_tab, text="Km/h to MPH", command=lambda: converter(input_getter(), kmh_to_mph))
-kmh2mph.grid(row=1, column=0)
-
-mph2kts = tk.Button(speed_tab, text="MPH to KTS", )
-mph2kts.grid(row=0, column=1)
-
-kts2mph = tk.Button(speed_tab, text="KTS to MPH", )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 input_field = tk.Entry(middle_frame, font=(20))
-input_field.grid(row=1, column=0)
+input_field.grid(row=0, column=0)
 
 output = tk.Label(lower_frame, text="OUTPUT", font=(20), anchor='w', bd=6, relief="ridge", width=12)
 output.grid(row=2, column=0)
