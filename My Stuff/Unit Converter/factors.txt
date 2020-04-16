@@ -1,0 +1,4 @@
+kilometer = {
+	"kilometer_2_mile" : 0.6213688756,
+	"mile_2_kilometer" : 1.60935
+}

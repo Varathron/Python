@@ -1,13 +1,10 @@
 # from Tkinter import *
 import Tkinter as tk
 import ttk 
+import factors
 
-distances_units = {
-	"kilometer_2_mile" : 0.6213688756,
-	"mile_2_kilometer" : 1.60935
-}
+distance_labels = list(factors.kilometer.keys())
 
-distances_labels = ["Kilometer", "Mile"]
 
 
 def input_getter():
@@ -22,19 +19,12 @@ def input_getter():
 def converter(input_value, from_unit, to_unit):
 	factor = 0
 
-	if from_unit == 'Kilometer':
-		if to_unit == 'Mile':
-			factor = distances_units["kilometer_2_mile"]
-		else:
-			factor = 1
-	else:
-		if to_unit == 'Kilometer':
-			factor = distances_units["mile_2_kilometer"]
-		else:
-			factor = 1
+	
 
+	
 	result = input_value * factor
 	output.configure(text=str(result))
+
 
 
 window = tk.Tk()
@@ -58,13 +48,13 @@ tabs.add(speed_tab_frame, text="Speed")
 from_unit = tk.StringVar()
 to_unit = tk.StringVar()
 
-unit_selection_from = tk.OptionMenu(distance_tab_frame, from_unit, *distances_labels)
+unit_selection_from = tk.OptionMenu(distance_tab_frame, from_unit, *distance_labels)
 unit_selection_from.grid(row=0, column=0)
 
 to_label = tk.Label(distance_tab_frame, text=" to ")
 to_label.grid(row=0, column=1)
 
-unit_selection_to = tk.OptionMenu(distance_tab_frame, to_unit, *distances_labels)
+unit_selection_to = tk.OptionMenu(distance_tab_frame, to_unit, *distance_labels)
 unit_selection_to.grid(row=0, column=2)
 
 
