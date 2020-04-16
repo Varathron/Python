@@ -49,10 +49,10 @@ tabs.grid(sticky='w')
 
 
 distance_tab_frame = tk.Frame(tabs)
-tabs.add(distance_tab_frame, text='Distance')
+tabs.add(distance_tab_frame, text="Distance")
 
 speed_tab_frame = tk.Frame(tabs)
-tabs.add(speed_tab_frame, text='Speed')
+tabs.add(speed_tab_frame, text="Speed")
 
 
 from_unit = tk.StringVar()
