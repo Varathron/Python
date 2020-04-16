@@ -1,4 +1,7 @@
-#distances---------------
+#distances-------------------------
+distances_labels = ["Kilometer", "Meter", "Centimeter", "Millimeter", "Mile", "Yard", "Foot", "Inch"]
+
+
 kilometer = {
 	"Mile" : 0.6213688756,
 	"Yard" : 1093.6132983,
@@ -87,5 +90,18 @@ millimeter = {
 	"Centimeter" : 1,
 	"Millimeter" : 10
 }
+#END
+distance_dict_list = {
+	'Kilometer' : kilometer,
+	'Mile' : mile, 
+	'Yard' : yard,
+	'Foot' : foot,
+	'Inch' : inch,
+	'Meter' : meter,
+	'Centimeter' : centimeter,
+	'Millimiter' : millimeter
+}
 
-# speeds
+
+#temps------------------
+temps_labels = ["Kelvin", "Celsius", "Fahrenheit"]
