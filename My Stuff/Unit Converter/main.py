@@ -1,6 +1,7 @@
-# from Tkinter import *
-import Tkinter as tk
-import ttk 
+from Tkinter import *
+# import Tkinter as tk
+from ttk import *
+# import ttk 
 import factors
 
 
@@ -15,13 +16,6 @@ def input_getter():
 	else:
 		input_value = float(input_value)
 		return input_value
-
-
-# def dictionary_finder(from_unit):
-# 	if from_unit in factors.distance_dict_list:
-# 		working_dict = factors.distance_dict_list[from_unit]
-	
-# 	return working_dict
 
 
 def temp_converter(input_value, from_unit, to_unit):
@@ -66,63 +60,62 @@ def converter(input_value, from_unit, to_unit):
 	output_set(result)
 
 
-
-window = tk.Tk()
+window = Tk()
 
 # window.geometry("600x400")
 window.resizable(False, False)
 window.title("Unit Conversion")
 
 #unit types tabs configuration
-tabs = ttk.Notebook(window)
+tabs = Notebook(window)
 tabs.grid(sticky='w')
 
-distance_tab_frame = tk.Frame(tabs)
+distance_tab_frame = Frame(tabs)
 tabs.add(distance_tab_frame, text="Distance")
 
-temp_tab_frame = tk.Frame(tabs)
+temp_tab_frame = Frame(tabs)
 tabs.add(temp_tab_frame, text="Temperature")
 
 #comboboxes variables
-from_unit = tk.StringVar()
-to_unit = tk.StringVar()
+from_unit = StringVar()
+to_unit = StringVar()
 
 #distance section comboboxes--------------------
-unit_selection_from = ttk.Combobox(distance_tab_frame, values=factors.distances_labels, textvariable=from_unit)
+unit_selection_from = Combobox(distance_tab_frame, values=factors.distances_labels, textvariable=from_unit)
 unit_selection_from.grid(row=0, column=0)
 
-to_label = tk.Label(distance_tab_frame, text=" to ")
+to_label = Label(distance_tab_frame, text=" to ")
 to_label.grid(row=0, column=1)
 
-unit_selection_from = ttk.Combobox(distance_tab_frame, values=factors.distances_labels, textvariable=to_unit)
+unit_selection_from = Combobox(distance_tab_frame, values=factors.distances_labels, textvariable=to_unit)
 unit_selection_from.grid(row=0, column=2)
 #END
 
 #temp section comboboxes-------------------
-unit_selection_from = ttk.Combobox(temp_tab_frame, values=factors.temps_labels, textvariable=from_unit)
-unit_selection_from.grid(row=0, column=0)
+unit_selection_from = Combobox(temp_tab_frame, values=factors.temps_labels, textvariable=from_unit)
+unit_selection_from.grid()
 
-to_label = tk.Label(temp_tab_frame, text=" to ")
+to_label = Label(temp_tab_frame, text=" to ")
 to_label.grid(row=0, column=1)
 
-unit_selection_from = ttk.Combobox(temp_tab_frame, values=factors.temps_labels, textvariable=to_unit)
+unit_selection_from = Combobox(temp_tab_frame, values=factors.temps_labels, textvariable=to_unit)
 unit_selection_from.grid(row=0, column=2)
 #END
 
 
-middle_frame = tk.Frame(window, bd=10)
+middle_frame = Frame(window, padding=10)
 middle_frame.grid(row=1)
 
-convert_button = tk.Button(middle_frame, text="Convert", pady=10, padx=20, command=lambda: converter(input_getter(), from_unit.get(), to_unit.get()))
+input_field = Entry(middle_frame, font=(20))
+input_field.grid()
+
+convert_button = Button(middle_frame, text="Convert", command=lambda: converter(input_getter(), from_unit.get(), to_unit.get()))
 convert_button.grid(row=1)
 
-lower_frame = tk.Frame(window, bd=10)
-lower_frame.grid(row=2)
+lower_text_frame = LabelFrame(window, text="Result")
+lower_text_frame.grid(row=2)
 
-input_field = tk.Entry(middle_frame, font=(20))
-input_field.grid(row=0, column=0)
-
-output = tk.Label(lower_frame, text="OUTPUT", font=(20), anchor='w', bd=6, width=12)
-output.grid(row=2, column=0)
+output = Label(lower_text_frame, font=(20), width=14)
+output.grid()
 
 window.mainloop()
