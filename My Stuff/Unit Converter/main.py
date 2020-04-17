@@ -4,13 +4,25 @@ import ttk
 import factors
 
 
-def dictionary_finder(from_unit):
-	if from_unit in factors.distance_dict_list:
-		working_dict = factors.distance_dict_list[from_unit]
-	elif from_unit in factors.temp_dict_list:
-		working_dict = factors.temp_dict_list[from_unit]
+def output_set(output_value):
+	output.configure(text=str(output_value))
 
-	return working_dict
+
+def input_getter():
+	input_value = input_field.get()
+	if len(input_value) == 0:
+		return 0
+	else:
+		input_value = float(input_value)
+		return input_value
+
+
+# def dictionary_finder(from_unit):
+# 	if from_unit in factors.distance_dict_list:
+# 		working_dict = factors.distance_dict_list[from_unit]
+	
+# 	return working_dict
+
 
 def temp_converter(input_value, from_unit, to_unit):
 	if from_unit == "Celsius":
@@ -37,27 +49,38 @@ def temp_converter(input_value, from_unit, to_unit):
 
 	return result
 
-def input_getter():
-	input_value = input_field.get()
-	if len(input_value) == 0:
-		return 0
-	else:
-		input_value = float(input_value)
-		return input_value
+# dictionary converter
+# def converter(input_value, from_unit, to_unit):
+# 	result = 0
+# 	if from_unit in factors.temps_labels:
+# 		result = temp_converter(input_value, from_unit, to_unit)
+# 	else:
+# 		working_dict = dictionary_finder(from_unit)
+# 		if to_unit in working_dict:
+# 			factor = working_dict[to_unit]
 
+# 		result = input_value * factor
 
+# 	output_set(result)
+	
+
+#using 2D list	
 def converter(input_value, from_unit, to_unit):
-	result = 0
+
 	if from_unit in factors.temps_labels:
 		result = temp_converter(input_value, from_unit, to_unit)
 	else:
-		working_dict = dictionary_finder(from_unit)
-		if to_unit in working_dict:
-			factor = working_dict[to_unit]
+		if from_unit in factors.distance_grid_index:
+			row = factors.distance_grid_index[from_unit]
+			if to_unit in factors.distance_grid_index:
+				column = factors.distance_grid_index[to_unit]
 
-		result = input_value * factor
+	factor = factors.distance_grid[row][column]
 
-	output.configure(text=str(result))
+	result = input_value * factor
+
+	output_set(result)
+
 
 
 window = tk.Tk()
@@ -76,7 +99,7 @@ tabs.add(distance_tab_frame, text="Distance")
 temp_tab_frame = tk.Frame(tabs)
 tabs.add(temp_tab_frame, text="Temperature")
 
-#variables
+#comboboxes variables
 from_unit = tk.StringVar()
 to_unit = tk.StringVar()
 
