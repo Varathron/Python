@@ -49,24 +49,9 @@ def temp_converter(input_value, from_unit, to_unit):
 
 	return result
 
-# dictionary converter
-# def converter(input_value, from_unit, to_unit):
-# 	result = 0
-# 	if from_unit in factors.temps_labels:
-# 		result = temp_converter(input_value, from_unit, to_unit)
-# 	else:
-# 		working_dict = dictionary_finder(from_unit)
-# 		if to_unit in working_dict:
-# 			factor = working_dict[to_unit]
-
-# 		result = input_value * factor
-
-# 	output_set(result)
-	
 
 #using 2D list	
 def converter(input_value, from_unit, to_unit):
-
 	if from_unit in factors.temps_labels:
 		result = temp_converter(input_value, from_unit, to_unit)
 	else:
@@ -75,9 +60,8 @@ def converter(input_value, from_unit, to_unit):
 			if to_unit in factors.distance_grid_index:
 				column = factors.distance_grid_index[to_unit]
 
-	factor = factors.distance_grid[row][column]
-
-	result = input_value * factor
+		factor = factors.distance_grid[row][column]
+		result = input_value * factor
 
 	output_set(result)
 
@@ -89,7 +73,7 @@ window = tk.Tk()
 window.resizable(False, False)
 window.title("Unit Conversion")
 
-#unit types tabs confioguration
+#unit types tabs configuration
 tabs = ttk.Notebook(window)
 tabs.grid(sticky='w')
 
@@ -138,7 +122,7 @@ lower_frame.grid(row=2)
 input_field = tk.Entry(middle_frame, font=(20))
 input_field.grid(row=0, column=0)
 
-output = tk.Label(lower_frame, text="OUTPUT", font=(20), anchor='w', bd=6, relief="ridge", width=12)
+output = tk.Label(lower_frame, text="OUTPUT", font=(20), anchor='w', bd=6, width=12)
 output.grid(row=2, column=0)
 
 window.mainloop()
