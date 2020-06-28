@@ -78,12 +78,12 @@ def display():
     print('')
     print(pavles)
     print('')
-    print('Lathos gramata: ' + str(grammataPouPaixtikan))
+    print('Λάθος γράμματα: ' + str(grammataPouPaixtikan))
     print('')
-    print('Lathos lekseis: ' + str(lathos_lekseis))
+    print('Λάθος λέξεις: ' + str(lathos_lekseis))
 
 print(clear)
-leksi = raw_input('Dose leksi: ')
+leksi = input('Δώσε λέξη: ')
 leksiCaps = leksi.upper()
 grammataLeksis = list(leksiCaps)
 
@@ -94,7 +94,7 @@ display()
 
 while arithmosLathon < settingLathi and kerdises != True:
     print('')
-    mantepsia = raw_input('Dose gramma i leksi: ')
+    mantepsia = input('Δώσε γράμμα ή λέξη: ')
     mantepsiaCaps = mantepsia.upper()
 
     #elegxos an dothike gramma h leksh
@@ -109,7 +109,7 @@ while arithmosLathon < settingLathi and kerdises != True:
             lathos_lekseis.append(mantepsiaCaps)
             display()
             print('')
-            print('--------> H leksi pou edwses einai lathos <--------')
+            print('--------> Η λέξη που έδωσες είναι λάθος <--------')
     else:
         #an mantepsei swsta ena gramma
         if mantepsiaCaps in grammataLeksis:
@@ -120,14 +120,14 @@ while arithmosLathon < settingLathi and kerdises != True:
         #an exeis ksanapaiksei to idio lathos gramma
         elif mantepsiaCaps in grammataPouPaixtikan:
             display()
-            print("Edwses hdh auto to gramma: " + mantepsiaCaps)
+            print("Έχεις δώσει ήδη το ίδιο γράμμα " + mantepsiaCaps)
         #an paikseis kainourgio lathos gramma
         else:
             arithmosLathon += 1
             grammataPouPaixtikan.append(mantepsiaCaps)
             display()
             print('')
-            print('--------> Den yparxei sti leksi to gramma pou edwses <--------')
+            print('--------> Δεν υπάρχει το γράμμα στη λέξη <--------')
         #elexos an nikises
         if pavles == grammataLeksis:
             kerdises = 1
@@ -136,12 +136,12 @@ if kerdises == True:
     display()
     print('')
     print('')
-    print('         MPRAVO KERDISES!!!!        ')
+    print('         ΜΠΡΑΒΟ ΚΕΡΔΙΣΕΣ!!!!!        ')
     print('')
     print('')
 else:
     display()
-    print('EXASES XAXAXXAXA')
+    print('ΕΧΑΣΕΣ ΧΑΧΑΧΑΑΧΑΧ')
     print('')
-    print('I leksi einai: ')
+    print('Η λέξη είναι: ')
     print(grammataLeksis)

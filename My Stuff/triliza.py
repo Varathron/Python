@@ -134,6 +134,7 @@ def board_initialize():
     global winner
     global mark
     global game_not_ended
+    global place
 
     board = ["-","-","-","-","-","-","-","-","-"]
     player = 1
@@ -151,9 +152,9 @@ def main_game_run():
     while more_games:
         play_game()
 
-        more = raw_input("Play more? Y/N: ")
+        more = raw_input("Play more? Yy/Nn: ")
         while (more != "Y" and more != "N" and more != "y" and more != "n"):
-            print("Type only Y or N")
+            print("Type only Yy or Nn")
             more = raw_input("Play more? Y/N: ")
         if more == "Y" or "y":
             board_initialize()
